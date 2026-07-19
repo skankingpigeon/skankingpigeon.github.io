@@ -1,0 +1,11 @@
+Status (Latest) =
+FIRSTNONBLANK (
+    SELECTCOLUMNS (
+        FILTER (
+            RELATEDTABLE ( 'Invoice Commentary' ),
+            [Latest Invoice Commentary] = "Yes"
+        ),
+        "Latest Commentary", 'Invoice Commentary'[Invoice Status]
+    ),
+    0
+)

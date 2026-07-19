@@ -1,0 +1,31 @@
+Ipsum = 
+/* -------------------------------------------------------------------------------------------------------------------------
+ Title:   Random Ipsum Lorem Text Generator.  
+ Desc:    Useful for creating placeholder data without dependency on other tables or data sets. 
+ Author:  Queryon // Orion Matthews. orion.matthews@queryon.com
+ License: This code is free to remix/reuse. Licensed under MIT licence. https://opensource.org/licenses/MIT
+ 
+ www.queryon.com                                                                                     Keep Calm and Queryon
+ -------------------------------------------------------------------------------------------------------------------------*/
+
+// Set the following to the same to return constant length string
+var CHARACTERS_TO_RETURN_MIN = 500
+var CHARACTERS_TO_RETURN_MAX = 500
+var NO_SPACES = FALSE() // Useful if you are doing a random name
+
+// standard ipsum paragraph in use since 1500s
+var ipsum = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum"
+
+// Duplicate the string a bit so we can pick a random spot
+var ipsum2 =CONCATENATE(CONCATENATE(CONCATENATE(CONCATENATE(CONCATENATE(CONCATENATE(CONCATENATE(ipsum,   ipsum), ipsum), ipsum), ipsum), ipsum), ipsum), ipsum) // this gives us a length of 3,496 to work with 
+
+// Remove spaces if the NO_SPACES variable is set
+var ipsum3 = IF(NO_SPACES=true, SUBSTITUTE(ipsum2, " ", ""), ipsum2)
+
+// Pick out a random chunk and trim it up so their isn't spaces at the start or end. 
+return trim(mid(ipsum3, RANDBETWEEN(1,500)+500, RANDBETWEEN(CHARACTERS_TO_RETURN_MIN, CHARACTERS_TO_RETURN_MAX)))
+
+/* Bug and notes: ¯\_(ツ)_/¯
+ Trim bug - Due to trimming, if MIN and MAX are set to the same it might return one or two less than exactly when spaces are allowed.
+ Upper case letter bug - Can't figure out how to upper case the first letter due to random number not being declarable as a variable.  Write me if you have a solution!
+ */

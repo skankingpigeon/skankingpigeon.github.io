@@ -1,0 +1,13 @@
+Person Key =
+VAR _positionkey = 'People | Position'[PositionKey]
+RETURN
+    FIRSTNONBLANK (
+        SELECTCOLUMNS (
+            FILTER (
+                RELATEDTABLE ( 'People | Workforce Daily' ),
+                'People | Workforce Daily'[PositionKey] = _positionkey
+            ),
+            "Person Key", 'People | Workforce Daily'[PersonKey]
+        ),
+        0
+    )

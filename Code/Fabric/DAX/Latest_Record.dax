@@ -1,0 +1,16 @@
+Latest Invoice Commentary =
+IF (
+    RANKX (
+        FILTER (
+            'Invoice Commentary',
+            'Invoice Commentary'[Invoice Unique ID]
+                = EARLIER ( 'Invoice Commentary'[Invoice Unique ID] )
+        ),
+        [Created On],
+        ,
+        DESC,
+        DENSE
+    ) = 1,
+    "Yes",
+    "No"
+)
