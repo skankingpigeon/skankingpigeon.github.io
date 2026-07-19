@@ -1,10 +1,27 @@
-<!-- YOUR NEW DYNAMIC INDEX STARTS HERE -->
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% seo %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+        <p>{{ site.description | default: site.github.project_tagline }}</p>
+        
+        <hr>
+        <!-- YOUR NEW DYNAMIC INDEX STARTS HERE -->
         <h3>Directory</h3>
         <ul style="list-style-type: none; padding-left: 0; margin-top: 10px;">
-          
-          {% comment %} 1. Loop through compiled Markdown pages {% endcomment %}
           {% for note in site.pages %}
-            {% unless note.url == "/" or note.url contains "README" or note.name contains "config" %}
+            {% unless note.url == "/" or note.url contains ".xml" or note.url contains ".txt" %}
               <li style="margin-bottom: 8px;">
                 <a href="{{ note.url | relative_url }}" style="font-weight: normal; font-size: 0.9em;">
                   {{ note.title | default: note.name }}
@@ -12,17 +29,21 @@
               </li>
             {% endunless %}
           {% endfor %}
-
-          {% comment %} 2. Loop through raw assets (like .ipynb notebooks) {% endcomment %}
-          {% for file in site.static_files %}
-            {% unless file.path contains "node_modules" or file.path contains "_layouts" or file.extname == ".xml" or file.extname == ".txt" %}
-              <li style="margin-bottom: 8px;">
-                <a href="{{ file.path | relative_url }}" style="font-weight: normal; font-size: 0.9em;">
-                  {{ file.name }}
-                </a>
-              </li>
-            {% endunless %}
-          {% endfor %}
-
         </ul>
         <!-- END OF INDEX -->
+        <hr>
+
+        <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
+      </header>
+      
+      <section>
+        {{ content }}
+      </section>
+      
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+  </body>
+</html>
