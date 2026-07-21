@@ -22,6 +22,8 @@
         <h3 style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; color: #666;">Directory</h3>
         <nav>
           <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+            
+            {% comment %} 1. Render internal site pages sorted by menu_order {% endcomment %}
             {% assign sorted_pages = site.pages | sort: "menu_order" %}
             {% for note in sorted_pages %}
               {% if note.show_in_menu == true %}
@@ -33,6 +35,20 @@
                 </li>
               {% endif %}
             {% endfor %}
+
+            {% comment %} 2. Render repository folder links from _config.yml {% endcomment %}
+            {% assign sorted_folders = site.folder_links | sort: "order" %}
+            {% for folder in sorted_folders %}
+              <li style="margin-bottom: 4px; line-height: 1.2;">
+                <a href="{{ folder.url }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   style="font-weight: normal; font-size: 0.85em; text-decoration: none; display: block; padding: 2px 0;">
+                  {{ folder.title }} ↗
+                </a>
+              </li>
+            {% endfor %}
+
           </ul>
         </nav>
         <!-- END OF DIRECTORY -->

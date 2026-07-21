@@ -1,3 +1,11 @@
 theme: jekyll-theme-minimal
 title: "My Github Pages"
 description: "My GitHub Detail."
+
+folder_links:
+  - title: "📂 Fabric Code"
+    url: "https://github.com/your-username/your-repo/tree/main/data-projects"
+    order: 1
+  - title: "📂 Other"
+    url: "https://github.com/your-username/your-repo/tree/main/notebooks"
+    order: 2
