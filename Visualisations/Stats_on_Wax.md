@@ -6,27 +6,43 @@ menu_order: 2
 ---
 
 <style>
-  /* Force the theme wrapper and content section to span wide */
+  /* Expand the overall site boundaries */
   .wrapper {
     max-width: 95% !important;
     margin: 20px auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 40px !important; /* Creates a solid buffer zone between nav and content */
   }
-  section {
-    width: 75% !important; /* Allocates more room to the main body */
-    max-width: none !important;
-    float: right !important;
-  }
+
+  /* Reset default float/width behaviors that cause overlapping */
   header {
-    width: 20% !important; /* Keeps your compact sidebar neatly on the left */
-    float: left !important;
+    position: sticky !important;
+    top: 20px;
+    width: 220px !important; /* Locks sidebar width */
+    flex-shrink: 0 !important; /* Prevents sidebar from being squished */
+    margin: 0 !important;
+    float: none !important;
   }
-  
-  /* Responsive fix: Stack them normally on mobile devices */
-  @media screen and (max-width: 768px) {
-    .wrapper, section, header {
+
+  section {
+    flex-grow: 1 !important; /* Forces content block to take up all remaining right-side space */
+    max-width: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    float: none !important;
+    overflow-x: hidden; /* Clean edge boundaries */
+  }
+
+  /* Smooth layout fallback for smaller screens / mobile tablets */
+  @media screen and (max-width: 900px) {
+    .wrapper {
+      flex-direction: column !important;
+      gap: 20px !important;
+    }
+    header, section {
       width: 100% !important;
-      max-width: 100% !important;
-      float: none !important;
     }
   }
 </style>
