@@ -7,4 +7,4 @@ menu_order: 2
 
 # Visualisations
 
-[Stats on Wax](/Visualisations/Stats-on-Wax.html)
+[Stats on Wax](/Visualisations/Stats_on_Wax.html)
