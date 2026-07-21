@@ -1,11 +1,11 @@
 theme: jekyll-theme-minimal
-title: "My Github Pages"
-description: "My GitHub Detail."
+title: "Joe Parkinson"
+description: "Github"
 
 folder_links:
-  - title: "📂 Fabric Code"
-    url: "https://github.com/your-username/your-repo/tree/main/data-projects"
+  - title: "📂 Code Snippets"
+    url: "https://github.com/skankingpigeon/skankingpigeon.github.io/tree/main/Code/"
     order: 1
-  - title: "📂 Other"
-    url: "https://github.com/your-username/your-repo/tree/main/notebooks"
+  - title: "📂 Repo Home"
+    url: "https://github.com/skankingpigeon/skankingpigeon.github.io"
     order: 2
