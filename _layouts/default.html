@@ -16,7 +16,7 @@
         <h1><a href="{{ '/' | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
         <p>{{ site.description | default: site.github.project_tagline }}</p>
         
-        <hr style="margin: 6px 0;">
+        <hr style="margin: 3px 0;">
         
         <!-- COMPACT DYNAMIC DIRECTORY -->
         <h3 style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; color: #666;">Directory</h3>
@@ -27,7 +27,7 @@
             {% assign sorted_pages = site.pages | sort: "menu_order" %}
             {% for note in sorted_pages %}
               {% if note.show_in_menu == true %}
-                <li style="margin-bottom: 4px; line-height: 1.2;">
+                <li style="margin-bottom: 2px; line-height: 1.2;">
                   <a href="{{ note.url | relative_url }}" 
                      style="font-weight: normal; font-size: 0.85em; text-decoration: none; display: block; padding: 2px 0;">
                     {{ note.title | default: note.name }}
@@ -39,7 +39,7 @@
             {% comment %} 2. Render repository folder links from _config.yml {% endcomment %}
             {% assign sorted_folders = site.folder_links | sort: "order" %}
             {% for folder in sorted_folders %}
-              <li style="margin-bottom: 4px; line-height: 1.2;">
+              <li style="margin-bottom: 2px; line-height: 1.2;">
                 <a href="{{ folder.url }}" 
                    target="_blank" 
                    rel="noopener noreferrer"
@@ -53,7 +53,7 @@
         </nav>
         <!-- END OF DIRECTORY -->
         
-        <hr style="margin: 6px 0;">
+        <hr style="margin: 3px 0;">
 
         <p class="view" style="font-size: 0.8em; margin-top: 10px;"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
       </header>
