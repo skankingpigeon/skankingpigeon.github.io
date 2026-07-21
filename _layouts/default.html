@@ -9,60 +9,110 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     {% seo %}
+    
+    <style>
+      /* Override theme boundaries to maximize visualization width */
+      #content-wrapper {
+        max-width: 95% !important;
+        padding: 30px 4% !important;
+      }
+      
+      #main-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        float: none !important;
+      }
+
+      /* Flatten the header to act as a top bar instead of a heavy block */
+      header {
+        width: 100% !important;
+        float: none !important;
+        margin-bottom: 20px !important;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #333;
+      }
+
+      /* Horizontal Flexbox Navigation styling */
+      .horizontal-nav {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+
+      .horizontal-nav ul {
+        list-style-type: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 20px !important; /* Space between navigation tabs */
+      }
+
+      .horizontal-nav li {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .horizontal-nav a {
+        font-size: 0.9em !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+        padding: 6px 12px !important;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+
+      .horizontal-nav a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff !important;
+      }
+    </style>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+
+    <header>
+      <div class="container">
+        <h1><a href="{{ '/' | relative_url }}" style="color: #fff; text-decoration: none;">{{ site.title | default: site.github.repository_name }}</a></h1>
         <p>{{ site.description | default: site.github.project_tagline }}</p>
-        
-        <hr style="margin: 3px 0;">
-        
-        <!-- COMPACT DYNAMIC DIRECTORY -->
-        <h3 style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; color: #666;">Directory</h3>
-        <nav>
-          <ul style="list-style-type: none; padding-left: 0; margin: 0;">
-            
-            {% comment %} 1. Render internal site pages sorted by menu_order {% endcomment %}
+
+        <!-- HORIZONTAL NAVIGATION BAR -->
+        <nav class="horizontal-nav">
+          <ul>
+            {% comment %} 1. Internal Pages {% endcomment %}
             {% assign sorted_pages = site.pages | sort: "menu_order" %}
             {% for note in sorted_pages %}
               {% if note.show_in_menu == true %}
-                <li style="margin-bottom: 2px; line-height: 1.2;">
-                  <a href="{{ note.url | relative_url }}" 
-                     style="font-weight: normal; font-size: 0.85em; text-decoration: none; display: block; padding: 2px 0;">
+                <li>
+                  <a href="{{ note.url | relative_url }}">
                     {{ note.title | default: note.name }}
                   </a>
                 </li>
               {% endif %}
             {% endfor %}
 
-            {% comment %} 2. Render repository folder links from _config.yml {% endcomment %}
+            {% comment %} 2. Repository Folders {% endcomment %}
             {% assign sorted_folders = site.folder_links | sort: "order" %}
             {% for folder in sorted_folders %}
-              <li style="margin-bottom: 2px; line-height: 1.2;">
-                <a href="{{ folder.url }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   style="font-weight: normal; font-size: 0.85em; text-decoration: none; display: block; padding: 2px 0;">
+              <li>
+                <a href="{{ folder.url }}" target="_blank" rel="noopener noreferrer" style="color: #62c4ff !important;">
                   {{ folder.title }} ↗
                 </a>
               </li>
             {% endfor %}
-
           </ul>
         </nav>
-        <!-- END OF DIRECTORY -->
-        
-        <hr style="margin: 3px 0;">
+      </div>
+    </header>
 
-        <p class="view" style="font-size: 0.8em; margin-top: 10px;"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-      </header>
-      
-      <section>
-        {{ content }}
-      </section>
-      
+    <div id="content-wrapper">
+      <div class="container">
+        <section id="main-content">
+          {{ content }}
+        </section>
+      </div>
     </div>
-    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+
   </body>
 </html>
